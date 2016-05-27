@@ -66,6 +66,12 @@ class sectionController extends Controller
      */
     public function show($id)
     {
+        $sections = Section::find($id);
+
+        $all_books = $sections->books;
+
+        return view('libraryViewsContainer.books', compact('sections','all_books')); 
+
     }
 
     /**

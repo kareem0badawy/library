@@ -25,7 +25,7 @@ Uploade An Image : {!! Form::file("image") !!}<br/>
 		<th><h3>Total Books</h3></th>
 		<th><h3>Update</h3></th>
 		<th><h3>Delete</h3></th>
-		<th></th>
+		<th><h3>Show</h3></th>
 		<th></th>
 	</tr>
 @foreach($sections as $section)
@@ -66,6 +66,10 @@ Uploade An Image : {!! Form::file("image") !!}<br/>
 	{!! Form::submit("Delete",["class" => "btn btn-danger"]) !!}
 
 	{!! Form::close() !!}
+	</td>
+
+	<td>
+		<a href="library/{{$section->id}}" class="btn btn-default">Show</a>
 	</td>
 @endif
 

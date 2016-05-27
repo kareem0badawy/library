@@ -6,7 +6,7 @@
 <!--Call Content varyings -->
 @section('content')
 
-	<div class="container"  style="opacity: 0.9">
+	<div class="container"  style="opacity: 0.9;">
 		<div class="row">
 			@foreach ($sections as $section)
 			<div class="col-md-3">
