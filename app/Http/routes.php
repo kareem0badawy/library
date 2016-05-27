@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 Route::resource('library','sectionController');
 
-get('admin','sectionController@showCreate');
+get('admin','sectionController@admin');
+
+post('library/restore/{id}','sectionController@restore');
+
+post('library/delete-forever/{id}','sectionController@deleteForever');

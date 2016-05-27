@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Section;
 use Illuminate\Html;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Section;
+
+
 class sectionController extends Controller
 {
     /**
@@ -22,12 +24,7 @@ class sectionController extends Controller
         //return view('libraryViewsContainer.library')->withDate($date)->withTime($time);
         
     }
-    public function showCreate()
-    {
-        $sections = Section::get(); 
-        
-        return view('libraryViewsContainer.admin',['sections'=>$sections]);
-    }
+   
 
     /**
      * Show the form for creating a new resource.
@@ -110,5 +107,26 @@ class sectionController extends Controller
     {
      Section::destroy($id);
      return redirect('admin'); 
+    }
+
+    public function admin()
+    {
+        $sections = Section::withTrashed()->get();
+
+        return view('libraryViewsContainer.admin', compact('sections')); 
+    }
+
+    public function restore($id)
+    {
+        $sections = Section::onlyTrashed()->find($id);
+        $sections->restore();
+        return redirect('admin');
+    }
+
+    public function deleteForever($id)
+    {
+        $sections = Section::onlyTrashed()->find($id);
+        $sections->forceDelete();
+        return redirect('admin');
     }
 }

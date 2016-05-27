@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/normalize.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.css')}}">
+	<link rel="shortcut icon" href="{{asset('images/icon.png')}}" />
 	<style type="text/css">
 	body{
 		background-color:#fff;

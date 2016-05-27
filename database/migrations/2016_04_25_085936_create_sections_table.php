@@ -17,8 +17,9 @@ class CreateSectionsTable extends Migration
             $table->string('section_name');
             $table->integer('books_total');
             $table->string('image_name');
-            $table->timestamps();
+            $table->timestamps(); 
             $table->softDeletes();
+
         });
     }
 

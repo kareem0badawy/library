@@ -25,32 +25,68 @@ Uploade An Image : {!! Form::file("image") !!}<br/>
 		<th><h3>Total Books</h3></th>
 		<th><h3>Update</h3></th>
 		<th><h3>Delete</h3></th>
+		<th></th>
+		<th></th>
 	</tr>
 @foreach($sections as $section)
+	@if($section->trashed())
+		<tr style="background-color:#CA3C3C">
+	@else
+		<tr style="background-color:#FFF">
+	@endif
 
-	<tr>
+
 	
 	<!--Update existing Section-->
 {!! Form::open(["url"=>"library/$section->id", "method"=>"patch"]) !!}
-<td>{!! Form::text("section_name",$section->section_name) !!}<td/>
+	<td>{!! Form::text("section_name",$section->section_name) !!}<td/>
 
-	<span style="margin-left: 50px;" class="label label-default">{{ $section->books_total }}</span>
-
-<td>
-
-{!! Form::submit("Update",["class" => "btn btn-success"]) !!}
-
-</td>
-{!! Form::close() !!}
-
+<span style="margin-left: 50px;" class="label label-default">{{ $section->books_total }}</span>
 
 <td>
-{!! Form::open(["url"=>"library/$section->id", "method"=>"delete"]) !!}
 
-{!! Form::submit("Delete",["class" => "btn btn-danger"]) !!}
+	{!! Form::submit("Update",["class" => "btn btn-success"]) !!}
 
-{!! Form::close() !!}
 </td>
+	{!! Form::close() !!}
+
+@if($section->trashed())
+<td>
+	{!! Form::open(["url"=>"library/delete-forever/$section->id"]) !!}
+
+	{!! Form::submit("Delete-Forever",["class" => "btn btn-danger"]) !!}
+
+	{!! Form::close() !!}
+</td>
+
+@else
+	<td>
+	{!! Form::open(["url"=>"library/$section->id", "method"=>"delete"]) !!}
+
+	{!! Form::submit("Delete",["class" => "btn btn-danger"]) !!}
+
+	{!! Form::close() !!}
+	</td>
+@endif
+
+
+
+
+
+
+
+@if($section->trashed())
+	<td>
+		{!! Form::open(["url"=>"library/restore/$section->id"]) !!}
+
+		{!! Form::submit("Restore",["class" => "btn btn-default"]) !!}
+
+		{!! Form::close() !!}
+	</td>
+@endif
+
+
+
 
 </tr>
 
