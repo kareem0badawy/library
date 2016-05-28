@@ -25,3 +25,5 @@ post('library/restore/{id}','sectionController@restore');
 post('library/delete-forever/{id}','sectionController@deleteForever');
 
 Route::resource('books', 'booksController');
+
+get('/summary', 'booksController@summary');

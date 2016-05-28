@@ -49,6 +49,15 @@
 		</div>
 	</header>
 
+@if(Session::has('m'))
+	<div class="container">
+		<?php $a = []; $a = session()->pull('m'); ?>
+		<div class="alert alert-{{ $a[0] }}">
+			{{ $a[1] }}
+		</div>
+
+	</div>
+@endif
 <!-- Start the content varyings-->
 
 	@yield('content')

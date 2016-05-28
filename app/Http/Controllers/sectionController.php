@@ -55,6 +55,9 @@ class sectionController extends Controller
         $new_section->image_name = $filename;
         $new_section->save();
 
+        session()->push('m', 'success');
+        session()->push('m', 'Section created successfuly! ');
+
         return redirect('admin');
     }
 
@@ -69,8 +72,17 @@ class sectionController extends Controller
         $sections = Section::find($id);
 
         $all_books = $sections->books;
+        $array_of_authors = [];
+        $i = 0 ;
 
-        return view('libraryViewsContainer.books', compact('sections','all_books')); 
+        foreach ($all_books as $book) {
+            $array_of_authors = array_add($array_of_authors,$i,
+                $book->authors()->select("authors.first_name", "authors.id")->get());
+
+            $i++;
+        }
+
+        return view('libraryViewsContainer.books', compact('sections','all_books','array_of_authors')); 
 
     }
 
@@ -100,6 +112,8 @@ class sectionController extends Controller
         $section->section_name = $section_name;
         $section->save();
 
+        session()->push('m', 'success');
+        session()->push('m', 'Section updtaded successfuly! ');
         return redirect('admin');
     }
 
@@ -112,6 +126,9 @@ class sectionController extends Controller
     public function destroy($id)
     {
      Section::destroy($id);
+
+     session()->push('m', 'danger');
+     session()->push('m', 'Section Deleted successfuly! ');
      return redirect('admin'); 
     }
 
@@ -126,6 +143,8 @@ class sectionController extends Controller
     {
         $sections = Section::onlyTrashed()->find($id);
         $sections->restore();
+        session()->push('m', 'info');
+        session()->push('m', 'Section restored successfuly! ');
         return redirect('admin');
     }
 
@@ -133,6 +152,8 @@ class sectionController extends Controller
     {
         $sections = Section::onlyTrashed()->find($id);
         $sections->forceDelete();
+        session()->push('m', 'danger');
+        session()->push('m', 'Section deleteForever ! ');
         return redirect('admin');
     }
 }
