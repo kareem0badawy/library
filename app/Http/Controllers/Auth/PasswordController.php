@@ -25,6 +25,7 @@ class PasswordController extends Controller
      *
      * @return void
      */
+    protected $redirectTo = '/library';
     public function __construct()
     {
         $this->middleware('guest');

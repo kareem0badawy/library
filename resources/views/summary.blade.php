@@ -3,8 +3,8 @@
 @section('content')
 
 <div class="container">
-	<h1 class="well text_center">Library Summary</h1>
-</div>
+	<h1 class="well text-center">Library Summary</h1>
+
 
 <table class="table">
 	<tr>
@@ -38,5 +38,5 @@
 		</tr>
 	@endforeach
 </table>
-
+</div>
 @stop

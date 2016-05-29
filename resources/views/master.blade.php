@@ -35,10 +35,15 @@
 				<p>Learning and Reading Books</p>
 			</div>
 				<div class="col-md-2">
-						<a href="/library">Home</a>
-					<br>
-						<a href="/admin">Create</a>
-					<br>
+						<a href="/library">Home</a><br>
+						@if(Auth::check())
+						<a href="/admin">{{ Auth::user()->name }}</a>
+						<a href="/auth/logout">Log out</a><br>
+						@else
+						<a href="/auth/login">Login</a><br>
+						<a href="/auth/register">Register</a><br>
+						@endif
+
 					<!--this call method from controller and send library page-->
 
 						<p><?php echo 'Date:' . date('Y-m-d');?></p>
