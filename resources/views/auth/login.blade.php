@@ -52,8 +52,11 @@
 		<tr>
 			<td colspan="2" class="text-center">
 				<a href="/auth/facebook">
-				<img src="{{ asset('images/facebookSignin.png') }}" width:"200px">
+				<img src="{{ asset('images/facebookSignin.png') }}" width:"200px" height="100px">
 				</a>
+				<!-- <a href="/auth/google">
+				<img src="{{ asset('images/google-sign-in.png') }}" width:"200px" height="100px">
+				</a> -->
 			</td>
 		</tr>
 	</table>

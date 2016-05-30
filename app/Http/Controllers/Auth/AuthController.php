@@ -73,6 +73,7 @@ class AuthController extends Controller
     public function redirectToProvider()
     {
         return Socialite::driver('facebook')->redirect();
+
     }
 
     public function handleProviderCallback()

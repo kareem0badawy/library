@@ -52,3 +52,8 @@ Route::post('/password/reset', 'Auth\PasswordController@postReset');
 Route::get('/auth/facebook', 'Auth\AuthController@redirectToProvider');
 Route::get('/callback', 'Auth\AuthController@handleProviderCallback');
 
+
+//Login by Google
+
+Route::get('/auth/google', 'Auth\AuthController@redirectToProvider');
+Route::get('/callback/google', 'Auth\AuthController@handleProviderCallback');
