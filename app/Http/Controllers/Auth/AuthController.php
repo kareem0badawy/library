@@ -7,6 +7,9 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Socialite;
+use Auth;
+
 
 class AuthController extends Controller
 {
@@ -66,5 +69,27 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+        $data = [
+                'name'      => $user->name,
+                'email'     => $user->email,
+                'password'  => $user->token
+        ];
+        $userDB = User::where('email',$user->email)->first();
+        if(!is_null($userDB)){
+            Auth::login($userDB);
+        }
+        else{
+            Auth::login($this->create($data));
+        }
+        return redirect('/library');
     }
 }

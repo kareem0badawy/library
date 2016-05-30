@@ -46,3 +46,9 @@ Route::post('/password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('/password/reset', 'Auth\PasswordController@postReset');
+
+//Login by Facebook
+
+Route::get('/auth/facebook', 'Auth\AuthController@redirectToProvider');
+Route::get('/callback', 'Auth\AuthController@handleProviderCallback');
+

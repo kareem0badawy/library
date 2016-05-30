@@ -49,6 +49,13 @@
 				<a href="/password/email">Forget Your Password</a>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="2" class="text-center">
+				<a href="/auth/facebook">
+				<img src="{{ asset('images/facebookSignin.png') }}" width:"200px">
+				</a>
+			</td>
+		</tr>
 	</table>
 	{!! Form::close() !!}
 </div>
