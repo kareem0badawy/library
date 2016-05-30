@@ -49,8 +49,15 @@ class sectionController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+               'section_name' => 'required|unique:sections,section_name|max:30',
+                'image'       =>  'required|image'
+            ]);
+
+    
         $section_name = $request->input('section_name');
         $file = $request->file('image');
+    
         $destinationPath = 'images';
         $filename = $file->getClientOriginalName();
         $file->move($destinationPath,$filename);

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Redis;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,9 +13,12 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+	Redis::set('name', 'kareem badawy');
+
+	return Redis::get('name');
+    //return view('welcome');
+});
 
 
 Route::resource('library','sectionController');

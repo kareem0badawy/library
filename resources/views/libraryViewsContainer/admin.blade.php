@@ -9,7 +9,16 @@
 	<div class="panel-body">
 		<h2><br /> Creating New Section</h2>
 		<hr>
-			
+
+@if(count($errors)>0)
+	<div class="alert alert-danger">
+		<ul>
+			@foreach($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+@endif
 <!-- Creating New Section-->		
 {!! Form::open(["url" => "library", "files" => "true"]) !!}
 Enter The Name Of The Section : {!! Form::text("section_name") !!}<br/>
@@ -88,8 +97,6 @@ Uploade An Image : {!! Form::file("image") !!}<br/>
 		{!! Form::close() !!}
 	</td>
 @endif
-
-
 
 
 </tr>
